@@ -8,7 +8,7 @@ export default function Canais({ canais }) {
       <section className="rounded-xl border border-line bg-base-900/30 p-5">
         <div className="mb-4">
           <h2 className="text-[14px] font-semibold text-white">Volume aprovado e conversão por canal</h2>
-          <p className="text-[12px] text-slate-500">Base completa (1.185 operações, não restrita à janela do template) · clique num canal para isolá-lo</p>
+          <p className="text-[12px] text-slate-500">Base completa (1.185 operações, não restrita à janela do template) · clique num canal para filtrar</p>
         </div>
         <ChannelChart canais={canais} />
       </section>

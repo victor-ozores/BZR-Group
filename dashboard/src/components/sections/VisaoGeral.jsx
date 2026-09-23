@@ -55,7 +55,7 @@ export default function VisaoGeral({ resumo, porTrimestre }) {
       <section className="rounded-xl border border-line bg-base-900/30 p-5">
         <div className="mb-1">
           <h2 className="text-[14px] font-semibold text-white">Crédito aprovado por trimestre e tipo de imóvel</h2>
-          <p className="text-[12px] text-slate-500">Barras empilhadas em R$ · rótulo no topo é o total aprovado do trimestre · clique na legenda para isolar um tipo</p>
+          <p className="text-[12px] text-slate-500">Barras empilhadas em R$ · rótulo no topo é o total do trimestre (ou do tipo, se filtrado) · clique na legenda para filtrar</p>
         </div>
         <StackedQuarterChart porTrimestre={porTrimestre} />
       </section>

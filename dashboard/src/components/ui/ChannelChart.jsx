@@ -31,35 +31,42 @@ function TooltipCustom({ active, payload }) {
 
 export default function ChannelChart({ canais }) {
   const [ordenarPor, setOrdenarPor] = useState("volume");
-  // Clicar num canal na legenda isola ele no gráfico e na tabela (mesmo
-  // padrão de interação do gráfico de barras empilhadas da Visão geral).
-  const [isolado, setIsolado] = useState(null);
+  // Clicar num canal na legenda filtra o gráfico e a tabela para mostrar só
+  // aquele canal (clicar de novo, ou no canal já filtrado, volta a mostrar
+  // todos).
+  const [filtro, setFiltro] = useState(null);
 
-  const visiveis = useMemo(
+  const todos = useMemo(
     () => canais.filter((c) => c.chave !== "nao_informado").slice().sort((a, b) => b[ordenarPor] - a[ordenarPor]),
     [canais, ordenarPor]
   );
+  const visiveis = useMemo(
+    () => (filtro ? todos.filter((c) => c.chave === filtro) : todos),
+    [todos, filtro]
+  );
   const semInfo = canais.find((c) => c.chave === "nao_informado");
 
-  function alternarIsolamento(chave) {
-    setIsolado((atual) => (atual === chave ? null : chave));
+  function alternarFiltro(chave) {
+    setFiltro((atual) => (atual === chave ? null : chave));
   }
 
   return (
     <div className="flex flex-col gap-3.5">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap gap-x-1 gap-y-1.5" role="group" aria-label="Filtrar por canal">
-          {visiveis.map((c) => {
-            const ativo = !isolado || isolado === c.chave;
+          {todos.map((c) => {
+            const selecionado = filtro === c.chave;
+            const apagado = filtro && !selecionado;
             return (
               <button
                 key={c.chave}
                 type="button"
-                onClick={() => alternarIsolamento(c.chave)}
-                className={`inline-flex items-center gap-1.5 text-[11.5px] rounded-md px-2 py-1 transition-opacity hover:opacity-90 ${ativo ? "opacity-100" : "opacity-45"}`}
+                onClick={() => alternarFiltro(c.chave)}
+                aria-pressed={selecionado}
+                className={`inline-flex items-center gap-1.5 text-[11.5px] rounded-md px-2 py-1 transition-colors ${selecionado ? "bg-white/10 text-slate-100" : apagado ? "text-slate-600 opacity-50 hover:opacity-80" : "text-slate-300 hover:bg-white/5"}`}
               >
                 <span className="w-2.5 h-2.5 rounded-sm shrink-0" style={{ background: COR_POR_CANAL[c.chave] }} />
-                <span className={ativo ? "text-slate-300" : "text-slate-500"}>{c.canal}</span>
+                {c.canal}
               </button>
             );
           })}
@@ -78,6 +85,15 @@ export default function ChannelChart({ canais }) {
         </div>
       </div>
 
+      {filtro && (
+        <p className="text-[11px] text-slate-500 -mt-1.5">
+          Filtrado por <span className="text-slate-300 font-medium">{visiveis[0]?.canal}</span> ·{" "}
+          <button type="button" onClick={() => setFiltro(null)} className="underline hover:text-slate-300">
+            limpar filtro
+          </button>
+        </p>
+      )}
+
       <div className="flex flex-col lg:flex-row gap-5">
         <div className="flex-1 h-[280px]">
           <ResponsiveContainer width="100%" height="100%">
@@ -95,7 +111,7 @@ export default function ChannelChart({ canais }) {
               <Tooltip content={<TooltipCustom />} cursor={{ fill: CORES.hover }} />
               <Bar dataKey="volume" radius={[0, 4, 4, 0]} barSize={22} isAnimationActive={false}>
                 {visiveis.map((c) => (
-                  <Cell key={c.chave} fill={COR_POR_CANAL[c.chave]} fillOpacity={!isolado || isolado === c.chave ? 1 : 0.18} />
+                  <Cell key={c.chave} fill={COR_POR_CANAL[c.chave]} />
                 ))}
                 <LabelList
                   dataKey="volume"
@@ -119,23 +135,20 @@ export default function ChannelChart({ canais }) {
               </tr>
             </thead>
             <tbody>
-              {visiveis.map((c) => {
-                const ativo = !isolado || isolado === c.chave;
-                return (
-                  <tr key={c.chave} className={`border-b border-line/60 transition-opacity ${ativo ? "" : "opacity-40"}`}>
-                    <td className="py-2 flex items-center gap-2 text-slate-200">
-                      <span className="w-2 h-2 rounded-sm shrink-0" style={{ background: COR_POR_CANAL[c.chave] }} />
-                      {c.canal}
-                    </td>
-                    <td className="py-2 text-right text-slate-300">{formatInt(c.nOperacoes)}</td>
-                    <td className="py-2 text-right text-slate-300">{formatPct(c.conversaoQtd)}</td>
-                    <td className="py-2 text-right text-slate-300">{formatPct(c.conversaoValor)}</td>
-                  </tr>
-                );
-              })}
+              {visiveis.map((c) => (
+                <tr key={c.chave} className="border-b border-line/60">
+                  <td className="py-2 flex items-center gap-2 text-slate-200">
+                    <span className="w-2 h-2 rounded-sm shrink-0" style={{ background: COR_POR_CANAL[c.chave] }} />
+                    {c.canal}
+                  </td>
+                  <td className="py-2 text-right text-slate-300">{formatInt(c.nOperacoes)}</td>
+                  <td className="py-2 text-right text-slate-300">{formatPct(c.conversaoQtd)}</td>
+                  <td className="py-2 text-right text-slate-300">{formatPct(c.conversaoValor)}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
-          {semInfo && (
+          {semInfo && !filtro && (
             <p className="text-[11px] text-slate-500 mt-2">
               + {semInfo.nOperacoes} operações sem canal registrado (não somadas acima).
             </p>
