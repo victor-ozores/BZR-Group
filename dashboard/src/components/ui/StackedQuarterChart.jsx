@@ -2,6 +2,7 @@ import { useState } from "react";
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LabelList,
 } from "recharts";
+import { RiCloseLine } from "@remixicon/react";
 import { CATEGORICA, NEUTRO_SEM_DADO, CORES, TOOLTIP_ESTILO } from "../../theme";
 import { formatBRL } from "../../utils/format";
 
@@ -44,29 +45,38 @@ function TooltipCustom({ active, payload, label }) {
 }
 
 export default function StackedQuarterChart({ porTrimestre }) {
-  const data = montarLinhas(porTrimestre);
-  // Legenda acima do gráfico funciona como filtro: clicar mostra só aquele
-  // tipo de imóvel (as barras dos outros tipos somem e o rótulo no topo
-  // passa a mostrar o valor do tipo selecionado, não o total do trimestre);
-  // clicar de novo no tipo já filtrado volta a mostrar os 4 empilhados.
-  const [ativos, setAtivos] = useState(() => new Set(TIPOS));
-  const filtrado = ativos.size < TIPOS.length;
-  const tiposVisiveis = TIPOS.filter((t) => ativos.has(t));
+  // Legenda acima do gráfico funciona como filtro de seleção múltipla:
+  // clicar adiciona/remove aquele tipo de imóvel do filtro. Com algum tipo
+  // selecionado, as barras dos demais somem e o rótulo no topo passa a
+  // somar só os tipos selecionados; sem nenhum selecionado, mostra os 4
+  // empilhados com o total geral do trimestre.
+  const [selecionados, setSelecionados] = useState(() => new Set());
+  const filtrado = selecionados.size > 0;
+  const tiposVisiveis = filtrado ? TIPOS.filter((t) => selecionados.has(t)) : TIPOS;
+
+  const dataBase = montarLinhas(porTrimestre);
+  const data = filtrado
+    ? dataBase.map((r) => ({
+        ...r,
+        _totalFiltrado: tiposVisiveis.reduce((s, t) => s + (r[t] || 0), 0),
+      }))
+    : dataBase;
 
   function alternar(tipo) {
-    setAtivos((prev) => {
-      if (prev.size === 1 && prev.has(tipo)) return new Set(TIPOS);
-      return new Set([tipo]);
+    setSelecionados((prev) => {
+      const novo = new Set(prev);
+      if (novo.has(tipo)) novo.delete(tipo);
+      else novo.add(tipo);
+      return novo;
     });
   }
 
   return (
     <div>
-      <div className="flex flex-wrap gap-x-1 gap-y-1.5 mb-3 px-0.5" role="group" aria-label="Filtrar por tipo de imóvel">
+      <div className="flex flex-wrap items-center gap-x-1 gap-y-1.5 mb-3 px-0.5" role="group" aria-label="Filtrar por tipo de imóvel (seleção múltipla)">
         {TIPOS.map((tipo, i) => {
-          const ativo = ativos.has(tipo);
-          const selecionado = filtrado && ativo;
-          const apagado = filtrado && !ativo;
+          const selecionado = selecionados.has(tipo);
+          const apagado = filtrado && !selecionado;
           return (
             <button
               key={tipo}
@@ -80,15 +90,17 @@ export default function StackedQuarterChart({ porTrimestre }) {
             </button>
           );
         })}
-      </div>
-      {filtrado && (
-        <p className="text-[11px] text-slate-500 mb-2 -mt-1">
-          Filtrado por <span className="text-slate-300 font-medium">{tiposVisiveis[0]}</span> ·{" "}
-          <button type="button" onClick={() => setAtivos(new Set(TIPOS))} className="underline hover:text-slate-300">
-            limpar filtro
+        {filtrado && (
+          <button
+            type="button"
+            onClick={() => setSelecionados(new Set())}
+            className="inline-flex items-center gap-1 text-[11.5px] font-medium rounded-md pl-1.5 pr-2.5 py-1 border border-marca/50 bg-marca/15 text-slate-100 hover:bg-marca/25 transition-colors ml-1"
+          >
+            <RiCloseLine className="w-3.5 h-3.5" />
+            Limpar filtro{selecionados.size > 1 ? ` (${selecionados.size})` : ""}
           </button>
-        </p>
-      )}
+        )}
+      </div>
       <div className="h-[300px]">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data} margin={{ top: 28, right: 8, left: 0, bottom: 0 }}>
@@ -116,7 +128,7 @@ export default function StackedQuarterChart({ porTrimestre }) {
                 >
                   {isLast && (
                     <LabelList
-                      dataKey={filtrado ? tipo : "total"}
+                      dataKey={filtrado ? "_totalFiltrado" : "total"}
                       position="top"
                       formatter={(v) => formatBRL(v, { compact: true })}
                       style={{ fill: "#e2e8f0", fontSize: 11, fontWeight: 600 }}

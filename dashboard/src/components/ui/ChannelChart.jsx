@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, LabelList } from "recharts";
+import { RiCloseLine } from "@remixicon/react";
 import { CATEGORICA, NEUTRO_SEM_DADO, CORES, TOOLTIP_ESTILO } from "../../theme";
 import { formatBRL, formatInt, formatPct } from "../../utils/format";
 
@@ -31,32 +32,36 @@ function TooltipCustom({ active, payload }) {
 
 export default function ChannelChart({ canais }) {
   const [ordenarPor, setOrdenarPor] = useState("volume");
-  // Clicar num canal na legenda filtra o gráfico e a tabela para mostrar só
-  // aquele canal (clicar de novo, ou no canal já filtrado, volta a mostrar
-  // todos).
-  const [filtro, setFiltro] = useState(null);
+  // Clicar num canal na legenda adiciona/remove ele do filtro (dá pra
+  // selecionar mais de um). Sem nenhum canal selecionado, mostra todos.
+  const [filtro, setFiltro] = useState(() => new Set());
 
   const todos = useMemo(
     () => canais.filter((c) => c.chave !== "nao_informado").slice().sort((a, b) => b[ordenarPor] - a[ordenarPor]),
     [canais, ordenarPor]
   );
   const visiveis = useMemo(
-    () => (filtro ? todos.filter((c) => c.chave === filtro) : todos),
+    () => (filtro.size === 0 ? todos : todos.filter((c) => filtro.has(c.chave))),
     [todos, filtro]
   );
   const semInfo = canais.find((c) => c.chave === "nao_informado");
 
   function alternarFiltro(chave) {
-    setFiltro((atual) => (atual === chave ? null : chave));
+    setFiltro((atual) => {
+      const novo = new Set(atual);
+      if (novo.has(chave)) novo.delete(chave);
+      else novo.add(chave);
+      return novo;
+    });
   }
 
   return (
     <div className="flex flex-col gap-3.5">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex flex-wrap gap-x-1 gap-y-1.5" role="group" aria-label="Filtrar por canal">
+        <div className="flex flex-wrap items-center gap-x-1 gap-y-1.5" role="group" aria-label="Filtrar por canal (seleção múltipla)">
           {todos.map((c) => {
-            const selecionado = filtro === c.chave;
-            const apagado = filtro && !selecionado;
+            const selecionado = filtro.has(c.chave);
+            const apagado = filtro.size > 0 && !selecionado;
             return (
               <button
                 key={c.chave}
@@ -70,6 +75,16 @@ export default function ChannelChart({ canais }) {
               </button>
             );
           })}
+          {filtro.size > 0 && (
+            <button
+              type="button"
+              onClick={() => setFiltro(new Set())}
+              className="inline-flex items-center gap-1 text-[11.5px] font-medium rounded-md pl-1.5 pr-2.5 py-1 border border-marca/50 bg-marca/15 text-slate-100 hover:bg-marca/25 transition-colors ml-1"
+            >
+              <RiCloseLine className="w-3.5 h-3.5" />
+              Limpar filtro{filtro.size > 1 ? ` (${filtro.size})` : ""}
+            </button>
+          )}
         </div>
         <div className="inline-flex rounded-lg border border-line p-0.5 shrink-0" role="group" aria-label="Ordenar canais">
           {ORDENACOES.map((o) => (
@@ -84,15 +99,6 @@ export default function ChannelChart({ canais }) {
           ))}
         </div>
       </div>
-
-      {filtro && (
-        <p className="text-[11px] text-slate-500 -mt-1.5">
-          Filtrado por <span className="text-slate-300 font-medium">{visiveis[0]?.canal}</span> ·{" "}
-          <button type="button" onClick={() => setFiltro(null)} className="underline hover:text-slate-300">
-            limpar filtro
-          </button>
-        </p>
-      )}
 
       <div className="flex flex-col lg:flex-row gap-5">
         <div className="flex-1 h-[280px]">
@@ -148,7 +154,7 @@ export default function ChannelChart({ canais }) {
               ))}
             </tbody>
           </table>
-          {semInfo && !filtro && (
+          {semInfo && filtro.size === 0 && (
             <p className="text-[11px] text-slate-500 mt-2">
               + {semInfo.nOperacoes} operações sem canal registrado (não somadas acima).
             </p>
