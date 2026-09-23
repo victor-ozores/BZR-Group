@@ -1,0 +1,352 @@
+{
+  "meta": {
+    "gerado_em": "2026-09-22T22:27:10.388457",
+    "fonte_hash": "b34cf30b4933422c",
+    "n_linhas_total": 1185,
+    "n_linhas_janela": 1123,
+    "n_linhas_fora_janela": 62,
+    "janela": "Q3-2024 a Q4-2025"
+  },
+  "resumo": {
+    "totalAprovado": 187388999,
+    "totalFechado": 56807332,
+    "pctFechadoValor": 30.32,
+    "nOperacoesJanela": 1123,
+    "leadTimeMedioDias": 63.9,
+    "leadTimeMedianoDias": 56.0,
+    "pipelineAberto": 818,
+    "taxaConversaoGeral": 30.97
+  },
+  "porTrimestre": [
+    {
+      "trimestre": "Q3-24",
+      "aprovado": 9032131,
+      "fechado": 5715131,
+      "pctFechado": 63.28,
+      "nOperacoes": 59,
+      "porTipo": [
+        {
+          "tipo": "Casa",
+          "valor": 3280131,
+          "pct": 36.32
+        },
+        {
+          "tipo": "Apartamento",
+          "valor": 4492000,
+          "pct": 49.73
+        },
+        {
+          "tipo": "Outro (comercial/terreno)",
+          "valor": 990000,
+          "pct": 10.96
+        },
+        {
+          "tipo": "Sem tipo informado",
+          "valor": 270000,
+          "pct": 2.99
+        }
+      ]
+    },
+    {
+      "trimestre": "Q4-24",
+      "aprovado": 12522505,
+      "fechado": 5773000,
+      "pctFechado": 46.1,
+      "nOperacoes": 76,
+      "porTipo": [
+        {
+          "tipo": "Casa",
+          "valor": 5427000,
+          "pct": 43.34
+        },
+        {
+          "tipo": "Apartamento",
+          "valor": 6025505,
+          "pct": 48.12
+        },
+        {
+          "tipo": "Outro (comercial/terreno)",
+          "valor": 750000,
+          "pct": 5.99
+        },
+        {
+          "tipo": "Sem tipo informado",
+          "valor": 320000,
+          "pct": 2.56
+        }
+      ]
+    },
+    {
+      "trimestre": "Q1-25",
+      "aprovado": 17756129,
+      "fechado": 8399000,
+      "pctFechado": 47.3,
+      "nOperacoes": 112,
+      "porTipo": [
+        {
+          "tipo": "Casa",
+          "valor": 7275503,
+          "pct": 40.97
+        },
+        {
+          "tipo": "Apartamento",
+          "valor": 8100626,
+          "pct": 45.62
+        },
+        {
+          "tipo": "Outro (comercial/terreno)",
+          "valor": 1780000,
+          "pct": 10.02
+        },
+        {
+          "tipo": "Sem tipo informado",
+          "valor": 600000,
+          "pct": 3.38
+        }
+      ]
+    },
+    {
+      "trimestre": "Q2-25",
+      "aprovado": 29501438,
+      "fechado": 12174000,
+      "pctFechado": 41.27,
+      "nOperacoes": 203,
+      "porTipo": [
+        {
+          "tipo": "Casa",
+          "valor": 10703166,
+          "pct": 36.28
+        },
+        {
+          "tipo": "Apartamento",
+          "valor": 15768272,
+          "pct": 53.45
+        },
+        {
+          "tipo": "Outro (comercial/terreno)",
+          "valor": 2500000,
+          "pct": 8.47
+        },
+        {
+          "tipo": "Sem tipo informado",
+          "valor": 530000,
+          "pct": 1.8
+        }
+      ]
+    },
+    {
+      "trimestre": "Q3-25",
+      "aprovado": 55655676,
+      "fechado": 11259000,
+      "pctFechado": 20.23,
+      "nOperacoes": 328,
+      "porTipo": [
+        {
+          "tipo": "Casa",
+          "valor": 19581000,
+          "pct": 35.18
+        },
+        {
+          "tipo": "Apartamento",
+          "valor": 32450676,
+          "pct": 58.31
+        },
+        {
+          "tipo": "Outro (comercial/terreno)",
+          "valor": 3574000,
+          "pct": 6.42
+        },
+        {
+          "tipo": "Sem tipo informado",
+          "valor": 50000,
+          "pct": 0.09
+        }
+      ]
+    },
+    {
+      "trimestre": "Q4-25",
+      "aprovado": 62921120,
+      "fechado": 13487201,
+      "pctFechado": 21.44,
+      "nOperacoes": 345,
+      "porTipo": [
+        {
+          "tipo": "Casa",
+          "valor": 24859375,
+          "pct": 39.51
+        },
+        {
+          "tipo": "Apartamento",
+          "valor": 34046698,
+          "pct": 54.11
+        },
+        {
+          "tipo": "Outro (comercial/terreno)",
+          "valor": 4015047,
+          "pct": 6.38
+        },
+        {
+          "tipo": "Sem tipo informado",
+          "valor": 0,
+          "pct": 0.0
+        }
+      ]
+    }
+  ],
+  "canais": [
+    {
+      "canal": "Orgânico",
+      "chave": "organic",
+      "nOperacoes": 760,
+      "volume": 126093825,
+      "conversaoQtd": 30.92,
+      "conversaoValor": 28.11
+    },
+    {
+      "canal": "Offline",
+      "chave": "offline",
+      "nOperacoes": 140,
+      "volume": 34679289,
+      "conversaoQtd": 27.86,
+      "conversaoValor": 26.98
+    },
+    {
+      "canal": "Redes sociais",
+      "chave": "social_media",
+      "nOperacoes": 137,
+      "volume": 17625014,
+      "conversaoQtd": 29.93,
+      "conversaoValor": 39.22
+    },
+    {
+      "canal": "Outro",
+      "chave": "other",
+      "nOperacoes": 69,
+      "volume": 10822251,
+      "conversaoQtd": 40.58,
+      "conversaoValor": 45.79
+    },
+    {
+      "canal": "Afiliados",
+      "chave": "affiliates",
+      "nOperacoes": 51,
+      "volume": 6945000,
+      "conversaoQtd": 33.33,
+      "conversaoValor": 26.21
+    },
+    {
+      "canal": "Remarketing",
+      "chave": "remarketing",
+      "nOperacoes": 26,
+      "volume": 3420000,
+      "conversaoQtd": 26.92,
+      "conversaoValor": 24.71
+    },
+    {
+      "canal": "Não informado",
+      "chave": "nao_informado",
+      "nOperacoes": 2,
+      "volume": 0,
+      "conversaoQtd": 0.0,
+      "conversaoValor": 0.0
+    }
+  ],
+  "operacao": {
+    "etapas": [
+      {
+        "n": 1,
+        "titulo": "Aprovação de crédito",
+        "desc": "Análise de crédito aprova o cliente (credit_approval); imóvel em garantia é cadastrado."
+      },
+      {
+        "n": 2,
+        "titulo": "Due diligence do imóvel",
+        "desc": "Avaliação (laudo de garantia), checagem de matrícula/ônus e documentação do cliente."
+      },
+      {
+        "n": 3,
+        "titulo": "Formalização e assinatura",
+        "desc": "Contrato elaborado, assinado pelas partes e gravame registrado em cartório."
+      },
+      {
+        "n": 4,
+        "titulo": "Liberação de recursos",
+        "desc": "Transferência do valor ao cliente (closed_at), após confirmação do registro."
+      }
+    ],
+    "kpis": [
+      {
+        "label": "Lead time médio (aprovação → fechamento)",
+        "valor": "63.9 dias"
+      },
+      {
+        "label": "Lead time mediano",
+        "valor": "56 dias"
+      },
+      {
+        "label": "Taxa de conversão aprovação → fechamento",
+        "valor": "31.0%"
+      },
+      {
+        "label": "Pipeline aprovado, ainda em aberto",
+        "valor": "818 operações"
+      }
+    ],
+    "indicadoresSugeridos": [
+      "SLA por etapa (dias entre aprovação → avaliação → assinatura → liberação)",
+      "Taxa de desistência/cancelamento pós-aprovação",
+      "Aging do pipeline aberto (há quanto tempo cada operação pendente está parada)"
+    ]
+  },
+  "qualidadeDados": [
+    {
+      "severidade": "info",
+      "qtd": 17,
+      "titulo": "Grafia/idioma inconsistente em property_type",
+      "detalhe": "\"Apartment\", \"APARTMENT\", \"apto\", \"Apartamento\", \"casa\", \"Casa\" misturados com o padrão em inglês.",
+      "tratamento": "Coluna auxiliar normaliza tudo para apartment/house/other antes de qualquer soma."
+    },
+    {
+      "severidade": "critical",
+      "qtd": 11,
+      "titulo": "closed_at anterior a credit_approval",
+      "detalhe": "Fechamento registrado antes da aprovação — logicamente impossível.",
+      "tratamento": "Sinalizado como \"não fechado\" em todos os cálculos, nunca excluído da base."
+    },
+    {
+      "severidade": "critical",
+      "qtd": 1,
+      "titulo": "customer_age menor que 18 anos",
+      "detalhe": "Inválido para contrato de crédito — provável erro de digitação.",
+      "tratamento": "Mantido na base; não afeta os KPIs pedidos (nenhum agrega por idade)."
+    },
+    {
+      "severidade": "warning",
+      "qtd": 62,
+      "titulo": "Registros fora da janela do case",
+      "detalhe": "3 antes de jul/2024 e 59 em 2026 (até 28/mar/2026).",
+      "tratamento": "Não somados nas 6 colunas da janela pedida; contados à parte."
+    },
+    {
+      "severidade": "warning",
+      "qtd": 18,
+      "titulo": "loan_amount maior que property_value",
+      "detalhe": "LTV acima de 100% — atípico para crédito com garantia real.",
+      "tratamento": "Não alterado (pode ser legítimo); sinalizado para revisão de underwriting."
+    },
+    {
+      "severidade": "info",
+      "qtd": 486,
+      "titulo": "Alta proporção de nulos em loan_term/credit_score",
+      "detalhe": "41,0% e 41,4% em branco, quase as mesmas linhas nas duas colunas.",
+      "tratamento": "Categoria \"não informado\" nas quebras; hipótese: etapa do funil sem underwriting completo."
+    },
+    {
+      "severidade": "info",
+      "qtd": 19,
+      "titulo": "state em branco",
+      "detalhe": "1,6% das linhas sem UF preenchida.",
+      "tratamento": "Mantido como \"não informado\"; não afeta os KPIs pedidos."
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+# === Config local / material que não faz parte do case publicado ===
+.claude/
+
+# === Excel — arquivos de lock temporários ===
+~$*.xlsx
+
+# === Dados derivados (regeneráveis via scripts/etl_kpis.py) ===
+dados/interim/
+
+# === Python ===
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# === Node / dashboard (Vite + React) ===
+dashboard/node_modules/
+dashboard/dist/
+dashboard/build/
+node_modules/
+dist/
+build/
+.vercel/
+
+# === Ambiente / segredos ===
+.env
+.env.local
+*.log
+
+# === SO / editor ===
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# === Lixo temporário do Vite ===
+dashboard/vite.config.js.timestamp-*
