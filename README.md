@@ -11,6 +11,7 @@ lendo uma base fictícia de crédito com garantia de imóvel (Home Equity) e res
 perguntas do case com um pipeline Python + Excel + React construído do zero com IA
 (Claude), fórmulas vivas e validação cruzada ponta a ponta — documentados abaixo.
 
+[![Dashboard Online](https://img.shields.io/badge/Dashboard-Online-3b82f6?style=for-the-badge&logo=vercel&logoColor=white)](https://bzr-group.vercel.app/)
 [![GitHub](https://img.shields.io/badge/GitHub-Repo-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/victor-ozores/BZR-Group)
 [![License: MIT](https://img.shields.io/badge/License-MIT-94a3b8?style=for-the-badge)](./LICENSE)
 
@@ -36,9 +37,13 @@ mesmo em trimestres já maduros, sugerindo uma desaceleração real no funil, n�
 cohort. "Orgânico" é o canal mais relevante em volume (760 operações, R$ 126,1M, ~63% do
 total).
 
-## 🔗 Ver Dashboard
+## 🔗 Ver Dashboard Online
 
-Deploy na Vercel pendente — por ora, rode localmente (ver **Rodando localmente** abaixo).
+[![React](https://img.shields.io/badge/React-ABRIR%20DASHBOARD-3b82f6?style=for-the-badge&logo=react&logoColor=white)](https://bzr-group.vercel.app/)
+
+## 📢 Apresentação do Projeto
+
+[![Claude](https://img.shields.io/badge/Claude-VER%20APRESENTACAO-7c3aed?style=for-the-badge&logo=claude&logoColor=white)](https://claude.ai/artifact/L237gqgbAUqw5kjHXh58f8)
 
 ---
 
@@ -58,6 +63,9 @@ Respostas completas, com fórmulas vivas (SUMIFS/COUNTIFS/VLOOKUP direto na `Dat
 [`Case_Fintech_2026_Victor_RESPOSTA.xlsx`](./Case_Fintech_2026_Victor_RESPOSTA.xlsx) — inclui
 uma aba extra **Cálculos** que reconcilia, célula a célula, os números do Excel com os do
 dashboard.
+
+Para uma leitura corrida e formatada — pensada para quem não vai abrir a planilha — ver
+[`notas/Solucao - Case Fintech 2026 Home Equity.pdf`](./notas/Solucao%20-%20Case%20Fintech%202026%20Home%20Equity.pdf).
 
 ## 📊 Páginas do Dashboard
 
@@ -101,7 +109,7 @@ Case_Fintech_2026.xlsx (bruto, aba DataBase)
   dashboard/public/data/dashboard_data.json  (fonte única de verdade do front)
         │
         ▼
-  React + Vite + Tailwind + Recharts + Framer Motion  →  deploy Vercel (pendente)
+  React + Vite + Tailwind + Recharts + Framer Motion  →  deploy Vercel (bzr-group.vercel.app)
 ```
 
 Em paralelo, `Case_Fintech_2026_Victor_RESPOSTA.xlsx` recalcula os mesmos números com
@@ -126,7 +134,7 @@ a aba **Cálculos** confere linha a linha contra o `dashboard_data.json`.
 - **openpyxl + LibreOffice headless** — planilha de resposta com fórmulas vivas, recalculada
   e conferida fora do Excel antes da entrega
 - **React + Vite + Tailwind CSS + Recharts + Framer Motion** — dashboard (`/dashboard`)
-- **Vercel** — hospedagem estática (deploy pendente)
+- **Vercel** — hospedagem estática ([bzr-group.vercel.app](https://bzr-group.vercel.app/))
 
 Todo o pipeline foi construído com o **Claude**, incluindo a decisão de manter a
 `Case_Fintech_2026.xlsx` original intocada e derivar tudo (Python e Excel) a partir dela.
@@ -164,6 +172,7 @@ resolução.
 Case_Fintech_2026.xlsx                  → base original, intocada
 Case_Fintech_2026_Victor_RESPOSTA.xlsx  → respostas + fórmulas vivas + aba Cálculos
 /docs                 → contrato de dados e mini-DPIA
+/notas                → PDF com a solução do case em formato de relatório
 /scripts
   etl_kpis.py             → ETL principal (idempotente)
   05_export_dashboard.py  → reshape pro dashboard, sem recalcular
