@@ -3,6 +3,7 @@ import { AnimatePresence } from "framer-motion";
 import { useDashboardData } from "./hooks/useDashboardData";
 import Sidebar from "./components/shell/Sidebar";
 import Header from "./components/shell/Header";
+import MobileTabBar from "./components/shell/MobileTabBar";
 import VisaoGeral from "./components/sections/VisaoGeral";
 import Canais from "./components/sections/Canais";
 import Operacao from "./components/sections/Operacao";
@@ -44,6 +45,7 @@ export default function App() {
             {secaoAtiva === "qualidade" && <QualidadeDados key="qualidade" itens={data.qualidadeDados} />}
           </AnimatePresence>
         </main>
+        <MobileTabBar secaoAtiva={secaoAtiva} onSelecionar={setSecaoAtiva} />
       </div>
     </div>
   );

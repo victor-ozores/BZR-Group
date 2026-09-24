@@ -1,12 +1,5 @@
-import { RiPieChart2Line, RiShareForwardLine, RiFlowChart, RiShieldCheckLine } from "@remixicon/react";
 import logo from "../../assets/bzr-logo.svg";
-
-const ITENS = [
-  { id: "visao-geral", label: "Visão geral", icon: RiPieChart2Line },
-  { id: "canais", label: "Canais", icon: RiShareForwardLine },
-  { id: "operacao", label: "Operação", icon: RiFlowChart },
-  { id: "qualidade", label: "Qualidade de dados", icon: RiShieldCheckLine },
-];
+import { ITENS } from "./navItems";
 
 export default function Sidebar({ secaoAtiva, onSelecionar }) {
   return (
