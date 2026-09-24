@@ -39,3 +39,6 @@ Thumbs.db
 
 # === Lixo temporário do Vite ===
 dashboard/vite.config.js.timestamp-*
+
+# === Outros ===
+/CONTEXTO_PROJETO.md
