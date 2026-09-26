@@ -37,9 +37,10 @@ mesmo em trimestres já maduros, sugerindo uma desaceleração real no funil, n�
 cohort. "Orgânico" é o canal mais relevante em volume (760 operações, R$ 126,1M, ~63% do
 total).
 
-## 🔗 Ver Dashboard Online
+## 🔗 Ver Dashboards Online
 
 [![React](https://img.shields.io/badge/React-ABRIR%20DASHBOARD-3b82f6?style=for-the-badge&logo=react&logoColor=white)](https://bzr-group.vercel.app/)
+[![Power BI](https://img.shields.io/badge/Power%20BI-ABRIR%20DASHBOARD-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)](https://app.powerbi.com/view?r=eyJrIjoiY2QwNGExOTMtZjQyMS00MWU0LWI4NTYtZWZlNjJjNDIzZTk5IiwidCI6IjY1OWNlMmI4LTA3MTQtNDE5OC04YzM4LWRjOWI2MGFhYmI1NyJ9&pageName=b2ef2f6eecd6003e150c)
 
 ## 📢 Apresentação do Projeto
 
@@ -78,6 +79,8 @@ Para uma leitura corrida e formatada — pensada para quem não vai abrir a plan
 
 ## 📸 Preview
 
+**Versão React**
+
 <div align="center">
 <img src="./assets/01_visao_geral.png" width="100%" alt="Visão Geral">
 <br><br>
@@ -86,6 +89,12 @@ Para uma leitura corrida e formatada — pensada para quem não vai abrir a plan
 <img src="./assets/03_operacao.png" width="100%" alt="Operação">
 <br><br>
 <img src="./assets/04_qualidade_dados.png" width="100%" alt="Qualidade de Dados">
+</div>
+
+**Versão Power BI**
+
+<div align="center">
+<img src="./assets/PREVIEW_DS_VISAO_GERAL.png" width="100%" alt="Visão Geral — Power BI">
 </div>
 
 <details>
@@ -135,6 +144,7 @@ a aba **Cálculos** confere linha a linha contra o `dashboard_data.json`.
   e conferida fora do Excel antes da entrega
 - **React + Vite + Tailwind CSS + Recharts + Framer Motion** — dashboard (`/dashboard`)
 - **Vercel** — hospedagem estática ([bzr-group.vercel.app](https://bzr-group.vercel.app/))
+- **Power BI Desktop + DAX** — segunda versão do dashboard, mesmo case e mesmos números, star schema com medidas documentadas ([abrir dashboard](https://app.powerbi.com/view?r=eyJrIjoiY2QwNGExOTMtZjQyMS00MWU0LWI4NTYtZWZlNjJjNDIzZTk5IiwidCI6IjY1OWNlMmI4LTA3MTQtNDE5OC04YzM4LWRjOWI2MGFhYmI1NyJ9&pageName=b2ef2f6eecd6003e150c), arquivo em [`BZR_Group.pbix`](./BZR_Group.pbix))
 
 Todo o pipeline foi construído com o **Claude**, incluindo a decisão de manter a
 `Case_Fintech_2026.xlsx` original intocada e derivar tudo (Python e Excel) a partir dela.
@@ -171,6 +181,7 @@ resolução.
 ```
 Case_Fintech_2026.xlsx                  → base original, intocada
 Case_Fintech_2026_Victor_RESPOSTA.xlsx  → respostas + fórmulas vivas + aba Cálculos
+BZR_Group.pbix                          → segunda versão do dashboard, em Power BI
 /docs                 → contrato de dados e mini-DPIA
 /notas                → PDF com a solução do case em formato de relatório
 /scripts
